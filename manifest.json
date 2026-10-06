@@ -1,0 +1,16 @@
+{
+  "name": "ZKM Printing & Crafting Shop",
+  "short_name": "ZKM Shop",
+  "description": "ZKM Printing & Crafting Shop Order Management System",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f3f4f6",
+  "theme_color": "#1e3a8a",
+  "icons": [
+    {
+      "src": "zkm-logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

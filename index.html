@@ -1,0 +1,2071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ZKM PRINTING & CRAFTING SHOP</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1e3a8a">
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f3f4f6;
+    color: #111827;
+    padding-bottom: 85px;
+}
+
+/* HEADER */
+
+header {
+    background: #111827;
+    color: white;
+    padding: 22px 18px 38px;
+}
+
+.header-inner {
+    max-width: 1000px;
+    margin: auto;
+}
+
+header h1 {
+    font-size: 24px;
+}
+
+header p {
+    color: #9ca3af;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+/* MAIN */
+
+.container {
+    max-width: 1000px;
+    margin: -20px auto 0;
+    padding: 0 15px;
+}
+
+/* PAGES */
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+/* DASHBOARD */
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.card {
+    background: white;
+    padding: 18px;
+    border-radius: 14px;
+    box-shadow: 0 3px 12px rgba(0,0,0,.08);
+}
+
+.card small {
+    color: #6b7280;
+}
+
+.card h2 {
+    margin-top: 8px;
+    font-size: 24px;
+}
+
+/* CONTENT */
+
+.content {
+    background: white;
+    padding: 20px;
+    border-radius: 14px;
+    margin-top: 18px;
+    box-shadow: 0 3px 12px rgba(0,0,0,.07);
+}
+
+.content h2 {
+    margin-bottom: 18px;
+}
+
+/* FORM */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    outline: none;
+}
+
+textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.full {
+    grid-column: 1 / -1;
+}
+
+.save-btn {
+    margin-top: 18px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* ORDERS */
+
+.search {
+    max-width: 400px;
+    margin-bottom: 15px;
+}
+
+.order-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+.order-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.order-number {
+    color: #2563eb;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.customer {
+    font-weight: bold;
+    margin-top: 4px;
+}
+
+.details {
+    color: #6b7280;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.amount {
+    text-align: right;
+    font-weight: bold;
+}
+
+.balance {
+    color: #dc2626;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.order-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.status {
+    flex: 1;
+    padding: 8px;
+}
+
+.delete-btn {
+    border: none;
+    background: #fee2e2;
+    color: #b91c1c;
+    padding: 8px 12px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+/* EMPTY */
+
+.empty {
+    text-align: center;
+    padding: 35px 10px;
+    color: #9ca3af;
+}
+
+/* NAVIGATION */
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    height: 70px;
+
+    background: white;
+    border-top: 1px solid #ddd;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    z-index: 999;
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    color: #6b7280;
+    cursor: pointer;
+    text-align: center;
+    font-size: 12px;
+}
+
+.nav-btn span {
+    display: block;
+    font-size: 21px;
+    margin-bottom: 3px;
+}
+
+.nav-btn.active {
+    color: #2563eb;
+}
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    .dashboard {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full {
+        grid-column: auto;
+    }
+
+    header h1 {
+        font-size: 20px;
+    }
+
+    .card h2 {
+        font-size: 20px;
+    }
+}
+/* ZKM UI IMPROVEMENTS */
+#currentDate {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.12);
+    color: #dbeafe;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+}
+.quick-new-order {
+    width: 100%;
+    margin-top: 16px;
+    padding: 13px 18px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #1d4ed8, #2563eb);
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.25);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.quick-new-order:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.32);
+}
+
+.quick-new-order:active {
+    transform: translateY(0);
+}
+@media (max-width: 700px) {
+    header {
+        padding: 22px 15px 38px;
+    }
+
+    header h1 {
+        font-size: 22px;
+    }
+
+    .container {
+        padding: 0 10px;
+    }
+
+    .dashboard {
+        gap: 8px;
+    }
+
+    .card {
+        padding: 14px;
+    }
+
+    .order-actions {
+        flex-wrap: wrap;
+    }
+
+    .order-actions button,
+    .order-actions .status {
+        min-height: 40px;
+    }
+
+    .nav-btn {
+        padding: 7px 6px;
+        font-size: 11px;
+    }
+
+    .nav-btn span {
+        font-size: 20px;
+    }
+}
+#sales .card:nth-child(1) {
+    border-top-color: #2563eb;
+}
+
+#sales .card:nth-child(2) {
+    border-top-color: #16a34a;
+}
+
+#sales .card:nth-child(3) {
+    border-top-color: #f59e0b;
+}
+
+#sales .card:nth-child(4) {
+    border-top-color: #7c3aed;
+}
+input,
+select,
+textarea {
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    background: #ffffff;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.form-group label {
+    font-weight: 600;
+    color: #334155;
+}
+
+.save-btn {
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.save-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 16px rgba(37, 99, 235, 0.30);
+}
+.order-card {
+    border: 1px solid #e2e8f0;
+    border-left: 4px solid #2563eb;
+    border-radius: 14px;
+    padding: 17px;
+    margin-bottom: 12px;
+    background: #ffffff;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.order-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.10);
+}
+
+.order-number {
+    color: #2563eb;
+    font-size: 12px;
+    letter-spacing: 0.4px;
+}
+
+.customer {
+    font-size: 16px;
+    color: #0f172a;
+}
+
+.amount {
+    font-size: 16px;
+    color: #0f172a;
+}
+
+.status {
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: #f8fafc;
+    cursor: pointer;
+}
+
+.delete-btn {
+    transition: background 0.2s ease;
+}
+
+.delete-btn:hover {
+    background: #fecaca;
+}
+.nav-btn {
+    padding: 8px 12px;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    font-weight: 600;
+}
+
+.nav-btn:hover {
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+.nav-btn.active {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.nav-btn.active span {
+    transform: scale(1.08);
+}
+#recentOrders {
+    margin-top: 5px;
+}
+
+#recentOrders > div {
+    padding: 15px 12px !important;
+    border-bottom: 1px solid #e5e7eb !important;
+    border-radius: 10px;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+#recentOrders > div:hover {
+    background: #f8fafc;
+    transform: translateX(3px);
+}
+
+#recentOrders strong {
+    color: #0f172a;
+}
+
+#recentOrders .details {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #64748b;
+}
+header {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 55%, #2563eb 100%);
+    border-bottom: 3px solid #60a5fa;
+}
+
+.header-inner {
+    position: relative;
+}
+
+header h1 {
+    text-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+
+header p {
+    color: #dbeafe;
+}
+.card {
+    border: 1px solid #e5e7eb;
+    border-top: 4px solid #2563eb;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+}
+
+.card h2 {
+    font-size: 27px;
+    font-weight: 800;
+}
+header {
+    background: linear-gradient(135deg, #111827, #1f2937);
+    padding: 26px 18px 44px;
+}
+
+header h1 {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+header p {
+    color: #d1d5db;
+    font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-inner">
+
+        <h1>ZKM Printing & Crafting Shop</h1>
+
+        <p>Order Management System</p>
+        <div id="currentDate"></div>
+    </div>
+</header>
+
+
+<main class="container">
+
+
+<!-- HOME -->
+
+<section id="home" class="page active">
+
+    <div class="dashboard">
+
+        <div class="card">
+            <small>Total Orders</small>
+            <h2 id="totalOrders">0</h2>
+        </div>
+
+        <div class="card">
+            <small>Total Sales</small>
+            <h2 id="totalSales">₱0.00</h2>
+        </div>
+
+        <div class="card">
+            <small>Balance</small>
+            <h2 id="totalBalance">₱0.00</h2>
+        </div>
+
+        <div class="card">
+            <small>Ready for Pickup</small>
+            <h2 id="readyCount">0</h2>
+        </div>
+
+    </div>
+
+
+    <div class="content">
+    <button class="quick-new-order"
+        onclick="document.querySelectorAll('.nav-btn')[2].click();">
+        ＋ New Order
+    </button>
+        <h2>Recent Orders</h2>
+
+        <div id="recentOrders"></div>
+
+    </div>
+
+</section>
+
+
+<!-- ORDERS -->
+
+<section id="orders" class="page">
+
+    <div class="content">
+
+        <h2>Customer Orders</h2>
+
+        <input
+            class="search"
+            id="search"
+            placeholder="Search customer..."
+            oninput="showOrders()"
+        >
+
+        <div id="ordersList"></div>
+
+    </div>
+
+</section>
+
+
+<!-- NEW ORDER -->
+
+<section id="newOrder" class="page">
+
+    <div class="content">
+
+        <h2>New Customer Order</h2>
+
+
+        <div class="form-grid">
+
+
+            <div class="form-group">
+
+                <label>Customer Name *</label>
+
+                <input
+                    id="customer"
+                    placeholder="Customer name"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Contact Number</label>
+
+                <input
+                    id="contact"
+                    placeholder="09XXXXXXXXX"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Order Type</label>
+
+                <select id="orderType">
+
+                    <option>Tarpaulin</option>
+                    <option>T-Shirt Printing</option>
+                    <option>Photo Printing</option>
+                    <option>Sticker Printing</option>
+                    <option>Name Tag</option>
+                    <option>ID Printing</option>
+                    <option>Invitation</option>
+                    <option>Mug Printing</option>
+                    <option>Souvenir</option>
+                    <option>Layout / Design</option>
+                    <option>Other</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Quantity</label>
+
+                <input
+                    type="number"
+                    id="quantity"
+                    value="1"
+                    min="1"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Total Price *</label>
+
+                <input
+                    type="number"
+                    id="price"
+                    placeholder="0.00"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Down Payment</label>
+
+                <input
+                    type="number"
+                    id="payment"
+                    value="0"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Due Date</label>
+
+                <input
+                    type="date"
+                    id="dueDate"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Status</label>
+
+                <select id="status">
+
+                    <option>Pending</option>
+                    <option>Designing</option>
+                    <option>Printing</option>
+                    <option>Ready</option>
+                    <option>Released</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group full">
+
+                <label>Order Details / Notes</label>
+
+                <textarea
+                    id="notes"
+                    placeholder="Example: Black shirt, XL, front and back print"
+                ></textarea>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="save-btn"
+            onclick="addOrder()"
+        >
+            + Save Order
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- SALES -->
+
+<section id="sales" class="page">
+
+    <div class="content">
+
+        <h2>Sales Summary</h2>
+
+        <div class="dashboard">
+
+            <div class="card">
+                <small>Total Sales</small>
+                <h2 id="salesTotal">₱0.00</h2>
+            </div>
+
+            <div class="card">
+                <small>Collected</small>
+                <h2 id="collected">₱0.00</h2>
+            </div>
+
+            <div class="card">
+                <small>Balance</small>
+                <h2 id="salesBalance">₱0.00</h2>
+            </div>
+
+            <div class="card">
+                <small>Released</small>
+                <h2 id="released">0</h2>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<!-- NAVIGATION -->
+
+<nav class="bottom-nav">
+
+    <button
+        class="nav-btn active"
+        onclick="openPage('home', this)"
+    >
+        <span>⌂</span>
+        Home
+    </button>
+
+
+    <button
+        class="nav-btn"
+        onclick="openPage('orders', this)"
+    >
+        <span>☷</span>
+        Orders
+    </button>
+
+
+    <button
+        class="nav-btn"
+        onclick="openPage('newOrder', this)"
+    >
+        <span>＋</span>
+        New Order
+    </button>
+
+
+    <button
+        class="nav-btn"
+        onclick="openPage('sales', this)"
+    >
+        <span>₱</span>
+        Sales
+    </button>
+
+</nav>
+
+
+<script>
+
+let orders =
+    JSON.parse(localStorage.getItem("zkmOrdersV2")) || [];
+
+
+/* NAVIGATION */
+
+function openPage(pageID, button) {
+
+    document
+        .querySelectorAll(".page")
+        .forEach(function(page) {
+
+            page.classList.remove("active");
+
+        });
+
+
+    document
+        .getElementById(pageID)
+        .classList.add("active");
+
+
+    document
+        .querySelectorAll(".nav-btn")
+        .forEach(function(btn) {
+
+            btn.classList.remove("active");
+
+        });
+
+
+    button.classList.add("active");
+
+
+    refreshApp();
+}
+
+
+/* SAVE DATA */
+
+function saveData() {
+
+    localStorage.setItem(
+        "zkmOrdersV2",
+        JSON.stringify(orders)
+    );
+
+}
+
+
+/* ORDER NUMBER */
+
+function createOrderNumber() {
+
+    let lastNumber =
+        Number(
+            localStorage.getItem("zkmLastOrderNumber")
+        ) || 0;
+
+
+    lastNumber++;
+
+
+    localStorage.setItem(
+        "zkmLastOrderNumber",
+        lastNumber
+    );
+
+
+    return "ZKM-" +
+        String(lastNumber).padStart(4, "0");
+
+}
+
+
+/* ADD ORDER */
+
+function addOrder() {
+
+    let customer =
+        document.getElementById("customer")
+        .value
+        .trim();
+
+
+    let contact =
+        document.getElementById("contact")
+        .value
+        .trim();
+
+
+    let orderType =
+        document.getElementById("orderType")
+        .value;
+
+
+    let quantity =
+        Number(
+            document.getElementById("quantity")
+            .value
+        );
+
+
+    let price =
+        Number(
+            document.getElementById("price")
+            .value
+        );
+
+
+    let payment =
+        Number(
+            document.getElementById("payment")
+            .value
+        );
+
+
+    let dueDate =
+        document.getElementById("dueDate")
+        .value;
+
+
+    let status =
+        document.getElementById("status")
+        .value;
+
+
+    let notes =
+        document.getElementById("notes")
+        .value
+        .trim();
+
+
+    if (customer === "") {
+
+        alert("Please enter customer name.");
+
+        return;
+
+    }
+
+
+    if (price <= 0) {
+
+        alert("Please enter total price.");
+
+        return;
+
+    }
+
+
+    if (quantity < 1) {
+
+        alert("Quantity must be at least 1.");
+
+        return;
+
+    }
+
+
+    if (payment < 0) {
+
+        alert("Invalid down payment.");
+
+        return;
+
+    }
+
+
+    if (payment > price) {
+
+        alert(
+            "Down payment cannot be higher than total price."
+        );
+
+        return;
+
+    }
+
+
+    let order = {
+
+        id: Date.now(),
+
+        orderNumber:
+            createOrderNumber(),
+
+        customer: customer,
+
+        contact: contact,
+
+        orderType: orderType,
+
+        quantity: quantity,
+
+        price: price,
+
+        payment: payment,
+
+        dueDate: dueDate,
+
+        status: status,
+
+        notes: notes,
+
+        created:
+            new Date().toLocaleDateString("en-PH")
+
+    };
+
+
+    orders.push(order);
+
+    saveData();
+
+    clearForm();
+
+    alert(
+        "Order saved!\n\n" +
+        "Order Number: " +
+        order.orderNumber
+    );
+
+
+    document
+        .querySelectorAll(".nav-btn")[1]
+        .click();
+
+}
+
+
+/* CLEAR FORM */
+
+function clearForm() {
+
+    document.getElementById("customer").value = "";
+
+    document.getElementById("contact").value = "";
+
+    document.getElementById("quantity").value = 1;
+
+    document.getElementById("price").value = "";
+
+    document.getElementById("payment").value = 0;
+
+    document.getElementById("dueDate").value = "";
+
+    document.getElementById("status").value = "Pending";
+
+    document.getElementById("notes").value = "";
+
+}
+
+
+/* DISPLAY ORDERS */
+
+function showOrders() {
+
+    let container =
+        document.getElementById("ordersList");
+
+
+    let search =
+        document.getElementById("search")
+        .value
+        .toLowerCase();
+
+
+    let filtered =
+        orders.filter(function(order) {
+
+            return (
+                order.customer
+                    .toLowerCase()
+                    .includes(search)
+
+                ||
+
+                order.orderType
+                    .toLowerCase()
+                    .includes(search)
+
+                ||
+
+                order.orderNumber
+                    .toLowerCase()
+                    .includes(search)
+            );
+
+        });
+
+
+    if (filtered.length === 0) {
+
+        container.innerHTML =
+            '<div class="empty">No orders found.</div>';
+
+        return;
+
+    }
+
+
+    container.innerHTML = "";
+
+
+    filtered
+        .slice()
+        .reverse()
+        .forEach(function(order) {
+
+            let balance =
+                Math.max(
+                    order.price - order.payment,
+                    0
+                );
+
+
+            let item =
+                document.createElement("div");
+
+
+            item.className = "order-card";
+
+
+            let top =
+                document.createElement("div");
+
+            top.className = "order-top";
+
+
+            let left =
+                document.createElement("div");
+
+
+            let number =
+                document.createElement("div");
+
+            number.className = "order-number";
+
+            number.textContent =
+                order.orderNumber;
+
+
+            let customer =
+                document.createElement("div");
+
+            customer.className = "customer";
+
+            customer.textContent =
+                order.customer;
+
+
+            let details =
+                document.createElement("div");
+
+            details.className = "details";
+
+            details.textContent =
+                order.orderType +
+                " • Qty: " +
+                order.quantity;
+
+
+            left.appendChild(number);
+
+            left.appendChild(customer);
+
+            left.appendChild(details);
+
+
+            let right =
+                document.createElement("div");
+
+            right.className = "amount";
+
+
+            let price =
+                document.createElement("div");
+
+            price.textContent =
+                peso(order.price);
+
+
+            let balanceText =
+                document.createElement("div");
+
+            balanceText.className = "balance";
+
+            balanceText.textContent =
+                "Balance: " +
+                peso(balance);
+
+
+            right.appendChild(price);
+
+            right.appendChild(balanceText);
+
+
+            top.appendChild(left);
+
+            top.appendChild(right);
+
+
+            let actions =
+                document.createElement("div");
+
+            actions.className = "order-actions";
+
+
+            let status =
+                document.createElement("select");
+
+            status.className = "status";
+
+
+            [
+                "Pending",
+                "Designing",
+                "Printing",
+                "Ready",
+                "Released"
+
+            ].forEach(function(statusName) {
+
+                let option =
+                    document.createElement("option");
+
+                option.value = statusName;
+
+                option.textContent = statusName;
+
+
+                if (
+                    statusName === order.status
+                ) {
+
+                    option.selected = true;
+
+                }
+
+
+                status.appendChild(option);
+
+            });
+
+
+            status.addEventListener(
+                "change",
+                function() {
+
+                    changeStatus(
+                        order.id,
+                        this.value
+                    );
+
+                }
+            );
+
+
+            let deleteButton =
+                document.createElement("button");
+
+            deleteButton.className =
+                "delete-btn";
+
+            deleteButton.textContent =
+                "Delete";
+
+
+            deleteButton.addEventListener(
+                "click",
+                function() {
+
+                    deleteOrder(order.id);
+
+                }
+            );
+
+
+           let paymentButton =
+    document.createElement("button");
+
+paymentButton.className = "save-btn";
+paymentButton.textContent = "Add Payment";
+
+paymentButton.style.marginTop = "0";
+paymentButton.style.padding = "8px 12px";
+
+paymentButton.addEventListener(
+    "click",
+    function() {
+
+        addPayment(order.id);
+
+    }
+);
+
+let editButton =
+    document.createElement("button");
+
+editButton.className = "save-btn";
+editButton.textContent = "Edit";
+
+editButton.style.marginTop = "0";
+editButton.style.padding = "8px 12px";
+
+editButton.addEventListener(
+    "click",
+    function() {
+        editOrder(order.id);
+    }
+);
+let receiptButton =
+    document.createElement("button");
+
+receiptButton.className = "save-btn";
+receiptButton.textContent = "Receipt";
+
+receiptButton.style.marginTop = "0";
+receiptButton.style.padding = "8px 12px";
+
+receiptButton.addEventListener(
+    "click",
+    function() {
+        printReceipt(order.id);
+    }
+);
+actions.appendChild(status);
+actions.appendChild(editButton);
+actions.appendChild(paymentButton);
+actions.appendChild(receiptButton);
+actions.appendChild(deleteButton);
+
+            item.appendChild(top);
+
+            item.appendChild(actions);
+
+
+            container.appendChild(item);
+
+        });
+
+}
+
+
+/* PRINT RECEIPT */
+function printReceipt(id) {
+
+    let order = orders.find(function(item) {
+        return item.id === id;
+    });
+
+    if (!order) {
+        alert("Order not found.");
+        return;
+    }
+
+    let balance = Math.max(
+        Number(order.price || 0) - Number(order.payment || 0),
+        0
+    );
+
+    let receiptWindow = window.open(
+        "",
+        "_blank",
+        "width=420,height=650"
+    );
+
+    if (!receiptWindow) {
+        alert("Please allow pop-ups to print the receipt.");
+        return;
+    }
+
+    let receiptHTML = "";
+
+    receiptHTML += "<html>";
+    receiptHTML += "<head>";
+    receiptHTML += "<title>Receipt</title>";
+
+    receiptHTML += "<style>";
+    receiptHTML += "body{font-family:Arial,sans-serif;padding:25px;color:#111;}";
+    receiptHTML += "h2{text-align:center;margin-bottom:5px;}";
+    receiptHTML += ".subtitle{text-align:center;font-size:12px;margin-bottom:25px;}";
+    receiptHTML += ".line{border-top:1px dashed #000;margin:15px 0;}";
+    receiptHTML += ".row{display:flex;justify-content:space-between;margin:7px 0;}";
+    receiptHTML += ".total{font-weight:bold;font-size:18px;}";
+    receiptHTML += ".thankyou{text-align:center;margin-top:25px;font-size:12px;}";
+    receiptHTML += "@media print{button{display:none;}}";
+    receiptHTML += "</style>";
+
+    receiptHTML += "</head>";
+    receiptHTML += "<body>";
+
+    receiptHTML += "<h2>ZKM Printing & Crafting Shop</h2>";
+    receiptHTML += '<div class="subtitle">CUSTOMER RECEIPT</div>';
+
+    receiptHTML += '<div class="line"></div>';
+
+    receiptHTML += "<p><strong>Order No:</strong> " +
+        order.orderNumber + "</p>";
+
+    receiptHTML += "<p><strong>Customer:</strong> " +
+        order.customer + "</p>";
+
+    receiptHTML += "<p><strong>Contact:</strong> " +
+        (order.contact || "-") + "</p>";
+
+    receiptHTML += "<p><strong>Order:</strong> " +
+        (order.orderType || "-") + "</p>";
+
+    receiptHTML += "<p><strong>Quantity:</strong> " +
+        (order.quantity || 1) + "</p>";
+
+    receiptHTML += "<p><strong>Due Date:</strong> " +
+        (order.dueDate || "-") + "</p>";
+
+    receiptHTML += "<p><strong>Status:</strong> " +
+        (order.status || "Pending") + "</p>";
+
+    receiptHTML += '<div class="line"></div>';
+
+    receiptHTML += '<div class="row">';
+    receiptHTML += "<span>Total Price</span>";
+    receiptHTML += "<strong>" + peso(order.price) + "</strong>";
+    receiptHTML += "</div>";
+
+    receiptHTML += '<div class="row">';
+    receiptHTML += "<span>Paid</span>";
+    receiptHTML += "<strong>" + peso(order.payment || 0) + "</strong>";
+    receiptHTML += "</div>";
+
+    receiptHTML += '<div class="row total">';
+    receiptHTML += "<span>Balance</span>";
+    receiptHTML += "<span>" + peso(balance) + "</span>";
+    receiptHTML += "</div>";
+
+    receiptHTML += '<div class="line"></div>';
+
+    receiptHTML += '<div class="thankyou">';
+    receiptHTML += "Thank you for choosing<br>";
+    receiptHTML += "<strong>ZKM Printing & Crafting Shop</strong>";
+    receiptHTML += "</div>";
+
+    receiptHTML += "<br><br>";
+
+    receiptHTML += '<div style="text-align:center;">';
+    receiptHTML += '<button onclick="window.print()">Print Receipt</button>';
+    receiptHTML += "</div>";
+
+    receiptHTML += "</" + "body>";
+    receiptHTML += "</" + "html>";
+
+    receiptWindow.document.open();
+    receiptWindow.document.write(receiptHTML);
+    receiptWindow.document.close();
+}
+
+function editOrder(id) {
+
+    let order = orders.find(function(item) {
+        return item.id === id;
+    });
+
+    if (!order) {
+        return;
+    }
+
+    let customer = prompt(
+        "Customer Name:",
+        order.customer
+    );
+
+    if (customer === null) {
+        return;
+    }
+
+    customer = customer.trim();
+
+    if (!customer) {
+        alert("Customer name cannot be empty.");
+        return;
+    }
+
+    let contact = prompt(
+        "Contact Number:",
+        order.contact || ""
+    );
+
+    if (contact === null) {
+        return;
+    }
+
+    let orderType = prompt(
+        "Order Type:",
+        order.orderType || ""
+    );
+
+    if (orderType === null) {
+        return;
+    }
+
+    let quantity = prompt(
+        "Quantity:",
+        order.quantity
+    );
+
+    if (quantity === null) {
+        return;
+    }
+
+    quantity = Number(quantity);
+
+    if (!quantity || quantity <= 0) {
+        alert("Please enter a valid quantity.");
+        return;
+    }
+
+    let price = prompt(
+        "Total Price:",
+        order.price
+    );
+
+    if (price === null) {
+        return;
+    }
+
+    price = Number(price);
+
+    if (isNaN(price) || price < 0) {
+        alert("Please enter a valid total price.");
+        return;
+    }
+
+    if (price < order.payment) {
+        alert(
+            "Total price cannot be lower than the amount already paid."
+        );
+        return;
+    }
+
+    let dueDate = prompt(
+        "Due Date (YYYY-MM-DD):",
+        order.dueDate || ""
+    );
+
+    if (dueDate === null) {
+        return;
+    }
+
+    let notes = prompt(
+        "Notes:",
+        order.notes || ""
+    );
+
+    if (notes === null) {
+        return;
+    }
+
+    order.customer = customer;
+    order.contact = contact.trim();
+    order.orderType = orderType.trim();
+    order.quantity = quantity;
+    order.price = price;
+    order.dueDate = dueDate.trim();
+    order.notes = notes.trim();
+
+    saveData();
+    refreshApp();
+
+    alert("Order updated successfully!");
+}
+
+function addPayment(id) {
+
+    let order = orders.find(function(item) {
+        return item.id === id;
+    });
+
+    if (!order) {
+        return;
+    }
+
+    let currentBalance = Math.max(
+        order.price - order.payment,
+        0
+    );
+
+    if (currentBalance <= 0) {
+        alert("This order is already fully paid.");
+        return;
+    }
+
+    let amount = prompt(
+        "Remaining Balance: " +
+        peso(currentBalance) +
+        "\n\nEnter payment amount:"
+    );
+
+    if (amount === null) {
+        return;
+    }
+
+    amount = Number(amount);
+
+    if (!amount || amount <= 0) {
+        alert("Please enter a valid payment.");
+        return;
+    }
+
+    if (amount > currentBalance) {
+        alert(
+            "Payment cannot be higher than the remaining balance."
+        );
+        return;
+    }
+
+    order.payment += amount;
+
+    saveData();
+    refreshApp();
+
+    alert(
+        "Payment added successfully!\n\n" +
+        "Payment: " +
+        peso(amount) +
+        "\nRemaining Balance: " +
+        peso(order.price - order.payment)
+    );
+} 
+
+function changeStatus(id, newStatus) {
+
+    let order =
+        orders.find(function(item) {
+
+            return item.id === id;
+
+        });
+
+
+    if (!order) {
+
+        return;
+
+    }
+
+
+    order.status = newStatus;
+
+    saveData();
+
+    refreshApp();
+
+}
+
+
+/* DELETE */
+
+function deleteOrder(id) {
+
+    let answer =
+        confirm(
+            "Are you sure you want to delete this order?"
+        );
+
+
+    if (!answer) {
+
+        return;
+
+    }
+
+
+    orders =
+        orders.filter(function(order) {
+
+            return order.id !== id;
+
+        });
+
+
+    saveData();
+
+    refreshApp();
+
+}
+
+
+/* DASHBOARD */
+
+function updateDashboard() {
+
+    let total = 0;
+
+    let balance = 0;
+
+    let ready = 0;
+
+
+    orders.forEach(function(order) {
+
+        total += order.price;
+
+        balance +=
+            Math.max(
+                order.price - order.payment,
+                0
+            );
+
+
+        if (
+            order.status === "Ready"
+        ) {
+
+            ready++;
+
+        }
+
+    });
+
+
+    document
+        .getElementById("totalOrders")
+        .textContent =
+        orders.length;
+
+
+    document
+        .getElementById("totalSales")
+        .textContent =
+        peso(total);
+
+
+    document
+        .getElementById("totalBalance")
+        .textContent =
+        peso(balance);
+
+
+    document
+        .getElementById("readyCount")
+        .textContent =
+        ready;
+
+}
+
+
+/* RECENT ORDERS */
+
+function showRecentOrders() {
+
+    let container =
+        document.getElementById("recentOrders");
+
+
+    if (orders.length === 0) {
+
+        container.innerHTML =
+            '<div class="empty">No orders yet.<br><br>Tap New Order to add your first customer order.</div>';
+
+        return;
+
+    }
+
+
+    container.innerHTML = "";
+
+
+    let recent =
+        orders
+            .slice()
+            .reverse()
+            .slice(0, 5);
+
+
+    recent.forEach(function(order) {
+
+        let item =
+            document.createElement("div");
+
+
+        item.style.padding =
+            "12px 0";
+
+        item.style.borderBottom =
+            "1px solid #eee";
+
+        item.style.display =
+            "flex";
+
+        item.style.justifyContent =
+            "space-between";
+
+        item.style.gap =
+            "10px";
+
+
+        let left =
+            document.createElement("div");
+
+
+        let name =
+            document.createElement("strong");
+
+        name.textContent =
+            order.customer;
+
+
+        let details =
+            document.createElement("div");
+
+        details.className =
+            "details";
+
+        details.textContent =
+            order.orderNumber +
+            " • " +
+            order.orderType;
+
+
+        left.appendChild(name);
+
+        left.appendChild(details);
+
+
+        let right =
+            document.createElement("div");
+
+        right.style.textAlign =
+            "right";
+
+
+        let price =
+            document.createElement("strong");
+
+        price.textContent =
+            peso(order.price);
+
+let status =
+    document.createElement("div");
+
+status.className = "details";
+
+let statusIcon = "🟡";
+
+if (order.status === "Designing") {
+    statusIcon = "🔵";
+}
+
+if (order.status === "Printing") {
+    statusIcon = "🟣";
+}
+
+if (order.status === "Ready") {
+    statusIcon = "🟢";
+}
+
+if (order.status === "Released") {
+    statusIcon = "⚫";
+}
+
+status.textContent =
+    statusIcon + " " + order.status.toUpperCase();
+
+status.style.fontWeight = "bold";
+
+
+        right.appendChild(price);
+
+        right.appendChild(status);
+
+
+        item.appendChild(left);
+
+        item.appendChild(right);
+
+
+        container.appendChild(item);
+
+    });
+
+}
+
+
+/* SALES */
+
+function updateSales() {
+
+    let total = 0;
+
+    let collected = 0;
+
+    let balance = 0;
+
+    let released = 0;
+
+
+    orders.forEach(function(order) {
+
+        total += order.price;
+
+        collected += order.payment;
+
+        balance +=
+            Math.max(
+                order.price - order.payment,
+                0
+            );
+
+
+        if (
+            order.status === "Released"
+        ) {
+
+            released++;
+
+        }
+
+    });
+
+
+    document
+        .getElementById("salesTotal")
+        .textContent =
+        peso(total);
+
+
+    document
+        .getElementById("collected")
+        .textContent =
+        peso(collected);
+
+
+    document
+        .getElementById("salesBalance")
+        .textContent =
+        peso(balance);
+
+
+    document
+        .getElementById("released")
+        .textContent =
+        released;
+
+}
+
+
+/* PESO FORMAT */
+
+function peso(number) {
+
+    return "₱" +
+        Number(number || 0)
+        .toLocaleString(
+            "en-PH",
+            {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }
+        );
+
+}
+
+
+/* REFRESH */
+
+function refreshApp() {
+
+    updateDashboard();
+
+    showRecentOrders();
+
+    showOrders();
+
+    updateSales();
+
+}
+
+
+/* START */
+document.getElementById("currentDate").textContent =
+    new Date().toLocaleDateString("en-PH", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+    });
+    if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function() {
+        navigator.serviceWorker.register("./sw.js")
+            .then(function() {
+                console.log("ZKM Service Worker registered.");
+            })
+            .catch(function(error) {
+                console.error("Service Worker error:", error);
+            });
+    });
+}
+refreshApp();
+
+</script>
+
+</body>
+</html>
